@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .task-done {
+            background-color: green;
+        }
+        .task-not-done {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Tasks</h1>
+        {% for task in tasks %}
+            <div class="{% if task.completed %}task-done{% else %}task-not-done{% endif %}">
+                {{ task.title }}<br>
+                <a href="{% url 'task_done' task.id %}">Task done</a><br>
+                <a href="{% url 'task_delete' task.id %}">Delete task</a>
+            </div>
+            <br><br><br>
+        {% endfor %}
+</body>
+</html>
